@@ -5,7 +5,7 @@
 
 <c:set var="app" value="${pageContext.servletContext.contextPath}" />
 
-<aside class="modal fade" id="hd-delete-confirmation-modal">
+<aside class="modal fade" id="erp-delete-confirmation-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<header class="modal-header">
@@ -14,11 +14,11 @@
 			</header>
 			<div class="modal-body">
 				<p>You are about to DELETE the following:</p>
-				<p id="hd-delete-subject" class="well well-sm"></p>
+				<p id="erp-delete-subject" class="well well-sm"></p>
 			</div>
 			<footer class="modal-footer">
 				
-				<form action="" method="post" id="hd-delete-form">
+				<form action="" method="post" id="erp-modal-delete-form">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 					<button type="submit" class="btn btn-danger">Delete</button>
 				</form>

@@ -1,4 +1,5 @@
 /* Global styles */
+/*
 body {
 	background-color: #eee;
 	padding-top: 70px;
@@ -20,6 +21,7 @@ i.disabled {
 	color: #808080;
 	cursor: not-allowed;
 }
+*/
 
 /*.dropdown-menu button {
 	display: inline-block;
@@ -43,6 +45,7 @@ i.disabled {
 	}
 }*/
 
+/*
 .hd-main-header {
 	margin-top: -20px;
 	padding: 20px;
@@ -72,6 +75,6 @@ header.modal-header {
 td .fa {
 	margin: 3px;
 }
-
+*/
 
 

@@ -5,7 +5,7 @@
 
 <c:set var="app" value="${pageContext.servletContext.contextPath}" />
 
-<footer class="hd-main-footer navbar-fixed-bottom">
+<footer class="navbar-fixed-bottom">
 	<p class="text-center text-muted">
 		ERP |
 		<a href="https://ua.linkedin.com/in/dmytro-romenskyi-87035524">Dmytro Romenskyi</a> |

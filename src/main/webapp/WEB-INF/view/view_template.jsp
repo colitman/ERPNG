@@ -12,7 +12,7 @@
 		<c:import url="/imports/head?pageTitle=[[title]]"></c:import>
 	</head>
 	
-	<body data-page="[[page_id]]">
+	<body>
 		<div class="container">
 			<c:import url="/imports/mainNav?root=[[is_root]]"></c:import>
 			
@@ -23,7 +23,7 @@
 			<c:import url="/imports/mainFooter"></c:import>
 		</div>
 
-		<div class="hd-modals"></div>
+		<div class="erp-modals"></div>
 
 		<c:import url="/imports/scripts"></c:import>
 

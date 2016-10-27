@@ -11,7 +11,7 @@
 		<c:import url="/imports/head?pageTitle=Dashboard"></c:import>
 	</head>
 	
-	<body data-page="dashboard">
+	<body>
 		<div class="container">
 			<c:import url="/imports/mainNav?root=false"></c:import>
 			
@@ -22,7 +22,7 @@
 			<c:import url="/imports/mainFooter"></c:import>
 		</div>
 
-		<div class="hd-modals"></div>
+		<div class="erp-modals"></div>
 
 		<c:import url="/imports/scripts"></c:import>
 

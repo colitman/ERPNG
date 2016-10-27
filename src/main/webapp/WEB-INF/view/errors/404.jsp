@@ -11,7 +11,7 @@
 		<c:import url="/imports/head?pageTitle=Not Found!"></c:import>
 	</head>
 	
-	<body data-page="error" data-error="404">
+	<body>
 		<div class="container">
 			<c:import url="/imports/mainNav?root=false"></c:import>
 			
@@ -23,6 +23,5 @@
 		</div>
 		
 		<c:import url="/imports/scripts"></c:import>
-		<script src="${app}/res/app/js/pages/errors/404/index.js"></script>
 	</body>
 </html>
