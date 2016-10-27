@@ -4,6 +4,7 @@
  */
 package ua.hobbydev.webapp.erp.business.users;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.hobbydev.webapp.erp.business.DefaultService;
@@ -37,7 +38,14 @@ public class UserService extends DefaultService implements UserServiceInterface 
     }
 
     @Override
-    public User loadUserByUsername(String username) {
-        return null;
+    public User loadUserByUsername(final String username) throws UsernameNotFoundException {
+        List<User> allUsers = list();
+        User foundUser = allUsers.stream()
+                            .filter(
+                                    (user) -> user.getUsername().equals(username)
+                            )
+                            .findFirst()
+                            .orElseThrow(() -> new UsernameNotFoundException(username));
+        return foundUser;
     }
 }
