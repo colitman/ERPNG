@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	
+	<changeSet id="create_model" author="romenskyi" dbms="postgresql">
+		<!--
+			Creating sequences
+		-->
+		<createSequence sequenceName="users_key_seq" incrementBy="1" minValue="1" startValue="1" />
+		<createSequence sequenceName="creds_key_seq" incrementBy="1" minValue="1" startValue="1" />
+		<createSequence sequenceName="auth_tokens_key_seq" incrementBy="1" minValue="1" startValue="1" />
+		
+		<!--
+			Creating tables
+		-->
+		<createTable tableName="app_log_events" >
+			<column name="event_date" type="timestamp with time zone" />
+			<column name="class" type="text" />
+			<column name="level" type="text" />
+			<column name="message" type="text" />
+			<column name="context" type="text" />
+			<column name="stacktrace" type="text" />
+		</createTable>
+		
+		<createTable tableName="users" >
+			<column name="key" type="bigint" defaultValueSequenceNext="users_key_seq">
+				<constraints primaryKey="true" nullable="false" unique="true" />
+			</column>
+			<column name="username" type="text">
+				<constraints nullable="false" unique="true" />
+			</column>
+		</createTable>
+		
+		<createTable tableName="creds" >
+			<column name="key" type="bigint" defaultValueSequenceNext="creds_key_seq">
+				<constraints primaryKey="true" nullable="false" unique="true" />
+			</column>
+			<column name="user_key" type="bigint">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="password" type="text">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		
+		<addForeignKeyConstraint baseTableName="creds"
+								 baseColumnNames="user_key"
+								 constraintName="creds_user_key_FK"
+								 referencedTableName="users"
+								 referencedColumnNames="key"
+								 onUpdate="CASCADE"
+								 onDelete="CASCADE" />
+		
+		<createTable tableName="auth_tokens" >
+			<column name="key" type="bigint" defaultValueSequenceNext="auth_tokens_key_seq">
+				<constraints primaryKey="true" nullable="false" unique="true" />
+			</column>
+			<column name="user_key" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="token" type="text">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			
+			<column name="expires" type="timestamp with time zone">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		
+		<addForeignKeyConstraint baseTableName="auth_tokens"
+								 baseColumnNames="user_key"
+								 constraintName="auth_tokens_user_key_FK"
+								 referencedTableName="users"
+								 referencedColumnNames="key"
+								 onUpdate="CASCADE"
+								 onDelete="CASCADE"/>
+	</changeSet>
+</databaseChangeLog>
