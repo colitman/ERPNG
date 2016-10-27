@@ -4,16 +4,38 @@
  */
 package ua.hobbydev.webapp.erp.domain.user;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import ua.hobbydev.webapp.erp.domain.IdentifiedEntityInterface;
 
-/**
- * Created by dmytro.romenskyi on 10/27/2016.
- */
-public class UserInformation {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "usersInformation")
+public class UserInformation implements IdentifiedEntityInterface {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
