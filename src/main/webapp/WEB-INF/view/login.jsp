@@ -13,10 +13,10 @@
 	
 	<body>
 		<div class="container">
-			<c:import url="/imports/mainNav?root=false"></c:import>
+			<c:import url="/imports/mainNav"></c:import>
 			
 			<main>
-				<form action="${app}/login" method="post">
+				<form class="erp-auth-form" action="${app}/login" method="post">
 					<div class="form-group has-feedback">
 						<label class="control-label" for="username">Username</label>
 						<input type="text" class="form-control" id="username" name="username" placeholder="Username" autofocus="autofocus" required="required"/>
@@ -30,6 +30,16 @@
 					</div>
 					
 					<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+					
+					<div>
+						<c:if test="${param.error != null && not empty SPRING_SECURITY_LAST_EXCEPTION}">
+							<div class="alert alert-danger">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Login failed!</strong><br>
+								${SPRING_SECURITY_LAST_EXCEPTION.message}
+							</div>
+						</c:if>
+					</div>
 					
 				</form>
 			</main>

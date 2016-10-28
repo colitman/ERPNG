@@ -9,23 +9,22 @@ import ua.hobbydev.webapp.erp.domain.IdentifiedEntityInterface;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usersLoginInformation")
-public class UserLoginInformation implements IdentifiedEntityInterface {
+@Table(name = "roles")
+public class Role implements IdentifiedEntityInterface {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "authorities")
+    private String authorities;
 
     @Override
     public Long getId() {
@@ -37,28 +36,28 @@ public class UserLoginInformation implements IdentifiedEntityInterface {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getUsername() {
-        return username;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAuthorities() {
+        return authorities;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
     }
 
     // ~ ======== Hashcode and equals
@@ -68,7 +67,7 @@ public class UserLoginInformation implements IdentifiedEntityInterface {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserLoginInformation that = (UserLoginInformation) o;
+        Role that = (Role) o;
 
         return getId().equals(that.getId());
 

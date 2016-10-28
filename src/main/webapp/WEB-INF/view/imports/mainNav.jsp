@@ -9,7 +9,7 @@
 	<sec:authentication property="name" var="currentUsername"></sec:authentication>
 </c:if>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="${app}/">ERP</a>

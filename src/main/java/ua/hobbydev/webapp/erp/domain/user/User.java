@@ -7,6 +7,7 @@ package ua.hobbydev.webapp.erp.domain.user;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ua.hobbydev.webapp.erp.domain.IdentifiedEntityInterface;
+import ua.hobbydev.webapp.erp.domain.reports.TimeReport;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,6 +30,8 @@ public class User implements IdentifiedEntityInterface, UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "authInfoId")
     private UserAuthorityInformation userAuthorityInformation;
+    @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
+    private List<TimeReport> timeReports;
 
     @Override
     public Long getId() {
@@ -82,6 +85,19 @@ public class User implements IdentifiedEntityInterface, UserDetails {
         userAuthorityInformation.setUser(this);
     }
 
+    public List<TimeReport> getTimeReports() {
+        return timeReports;
+    }
+
+    public void setTimeReports(List<TimeReport> timeReports) {
+        this.timeReports = timeReports;
+    }
+
+    public void addTimeReport(TimeReport timeReport) {
+        timeReports.add(timeReport);
+        timeReport.setReporter(this);
+    }
+
     // ~ ====== UserDetails methods implementation
 
 
@@ -107,5 +123,23 @@ public class User implements IdentifiedEntityInterface, UserDetails {
     @Transient
     public boolean isEnabled() {
         return true;
+    }
+
+    // ~ ======== Hashcode and equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User that = (User) o;
+
+        return getId().equals(that.getId());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 }

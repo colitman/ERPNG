@@ -38,14 +38,21 @@ public class UserService extends DefaultService implements UserServiceInterface 
     }
 
     @Override
+    @Transactional
     public User loadUserByUsername(final String username) throws UsernameNotFoundException {
-        List<User> allUsers = list();
-        User foundUser = allUsers.stream()
-                            .filter(
-                                    (user) -> user.getUsername().equals(username)
-                            )
-                            .findFirst()
-                            .orElseThrow(() -> new UsernameNotFoundException(username));
-        return foundUser;
+        try {
+            List<User> allUsers = list();
+            User foundUser = allUsers.stream()
+                    .filter(
+                            (user) -> user.getUsername().equals(username)
+                    )
+                    .findFirst()
+                    .orElseThrow(() -> new UsernameNotFoundException(username));
+            return foundUser;
+        } catch (UsernameNotFoundException unfe) {
+            throw unfe;
+        } catch (Throwable t) {
+            throw new RuntimeException("Authentication service failure. Please contact the administrator");
+        }
     }
 }

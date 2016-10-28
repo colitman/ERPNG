@@ -1,4 +1,18 @@
 /* Global styles */
+
+body {
+    padding: 70px 0 50px;
+}
+
+.erp-auth-form {
+    max-width: 300px;
+    margin: auto;
+}
+
+.erp-auth-form .alert {
+    margin: 15px 0;
+}
+
 /*
 body {
 	background-color: #eee;

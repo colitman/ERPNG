@@ -14,7 +14,7 @@
 	
 	<body>
 		<div class="container">
-			<c:import url="/imports/mainNav?root=[[is_root]]"></c:import>
+			<c:import url="/imports/mainNav"></c:import>
 			
 			<main>
 				

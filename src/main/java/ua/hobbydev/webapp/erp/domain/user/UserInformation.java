@@ -38,4 +38,23 @@ public class UserInformation implements IdentifiedEntityInterface {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+    // ~ ======== Hashcode and equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserInformation that = (UserInformation) o;
+
+        return getId().equals(that.getId());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 }
